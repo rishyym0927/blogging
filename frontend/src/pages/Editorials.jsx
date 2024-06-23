@@ -6,6 +6,7 @@ import "daisyui/dist/full.css";
 import { BlogContext } from "../contexts/BlogContext";
 
 const tabs = [
+  { id: "tab1", title: "Tab 1", content: [] },
   { id: "tab2", title: "Tab 2", content: [] },
   { id: "tab3", title: "Tab 3", content: [] },
   { id: "tab4", title: "Tab 4", content: [] },
