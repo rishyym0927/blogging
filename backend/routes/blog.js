@@ -66,4 +66,16 @@ blogRouter.post("/", upload.single("coverImageURL"), async (req, res) => {
   return res.redirect(`/blog/${blog._id}`);
 });
 
+
+blogRouter.get("/", async(req, res)=>{
+  const allBlogs = await Blog.find({}).populate("createdBy");
+  console.log(req.user)
+  if(!allBlogs){
+    return res.status(404).send("Blog not found");
+  }
+  console.log(allBlogs)
+  return res.status(200).json(allBlogs);
+  
+})
+
 module.exports = blogRouter;

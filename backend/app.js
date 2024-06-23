@@ -3,15 +3,15 @@ const app = express();
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
-const cors = require("cors")
+const cors = require("cors");
 
 dotenv.config();
 //basic middelwares
 const corsOptions = {
-  origin: ['http://localhost:5173'], // Allowed frontend origin
+  origin: ["http://localhost:5173"], // Allowed frontend origin
   credentials: true, // Allow cookies to be sent
 };
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,13 +43,23 @@ app.use("/user", userRouter);
 app.use("/blog", checkForAuthenticationCookie("token"), blogRouter);
 
 //homepage rendering
-app.get("/", checkForAuthenticationCookie("token"),async (req, res) => {
-  const allBlogs = await Blog.find({}).populate("createdBy");
-  console.log(req.user)
-  res.render("home.ejs", {
-    user: req.user,
-    blogs: allBlogs,
-  });
+app.get("/", checkForAuthenticationCookie("token"), async (req, res) => {
+  try {
+    const allBlogs = await Blog.find({}).populate("createdBy");
+    console.log(req.user);
+
+    if (!allBlogs || allBlogs.length === 0) {
+      return res.status(404).json({ message: "No blogs found" });
+    }
+
+    res.status(200).json({
+      blogs: allBlogs,
+      user: req.user,
+    });
+  } catch (error) {
+    console.error("Error fetching blogs:", error);
+    res.status(500).json({ message: "An error occurred while fetching blogs" });
+  }
 });
 
 //server started

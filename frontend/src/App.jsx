@@ -9,14 +9,16 @@ import Editorials from "./pages/Editorials";
 import Epicshit from "./pages/Epicshit";
 import { UserProvider } from "./contexts/UserContext";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import { BlogProvider } from "./contexts/BlogContext";
 
 function App() {
   return (
+    <BlogProvider>
     <UserProvider>
     <BrowserRouter>
     <Header />
       <Routes>
-       
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
@@ -26,8 +28,10 @@ function App() {
           <Route path="/epicshit" element={<Epicshit />} />
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
     </UserProvider>
+    </BlogProvider>
   );
 }
 

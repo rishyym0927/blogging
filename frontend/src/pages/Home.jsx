@@ -9,6 +9,7 @@ import Footer from "../components/Footer/Footer";
 const Home = () => {
   
   return (
+    <>
     <div className="App bg-black min-h-[100vh]">
     
       <div className="md:flex md:items-center ">
@@ -20,8 +21,10 @@ const Home = () => {
           <BtnGroup1 />
         </div>
       </div>
-      <Footer />
+     
     </div>
+
+     </>
   );
 };
 
