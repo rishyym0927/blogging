@@ -1,0 +1,77 @@
+.box {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .box::before {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 140%;
+    background-color: rgb(255, 0, 119);
+    box-shadow: 0 0 20px rgb(8, 8, 8);
+    animation: animate 10s linear infinite;
+    z-index: 1; /* Lower z-index to place it behind the buttons */
+  }
+  
+  .box::after {
+    content: "";
+    position: absolute;
+    inset: 0.5px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    z-index: 2; /* Ensure it's behind the buttons but above the before element */
+  }
+  
+  button {
+    z-index: 3; /* Ensure buttons are above the pseudo-elements */
+  }
+
+  .box1{
+    z-index: 3; /* Ensure buttons are above the pseudo-elements */
+  }
+  
+  @keyframes animate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: 2px solid #ec4899; /* pink-500 */
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: -1;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  .btn{
+    .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        overflow: hidden; /* Ensure wave effect doesn't overflow the button */
+      }
+  }

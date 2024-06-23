@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogging App</title>
+    <style>
+        /* Reset some basic elements */
+        body, h1, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Set basic body styles */
+        body {
+            font-family: "Arial", sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 0 20px;
+        }
+
+        /* Style the navigation */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Style the content area */
+        .content {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .content h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .card p {
+            margin-bottom: 10px;
+        }
+
+        .card .createdBy, .card .createdAt {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .card .createdAt {
+            margin-top: auto;
+        }
+
+        /* User Info */
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .content {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/add-new">Add Blog</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <div class="user-info">
+         
+            <p>Welcome, <%= user.email %> (<%= user.role %>)</p>
+        </div>
+
+        <h1>Welcome to the Blogging App</h1>
+        <div class="card-container">
+            <% blogs.forEach(blog => { %>
+                <div class="card">
+                    <% if (blog.coverImageURL) { %>
+                        <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>">
+                    <% } %>
+                    <h2><%= blog.title %></h2>
+                    <p><%= blog.body %></p>
+                    <p><%= blog._id %></p>
+                    <p class="createdBy">Created by: <%= blog.createdBy.email %></p>
+                    <p class="createdAt">Created at: <%= new Date(blog.createdAt).toLocaleDateString() %></p>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script src="/path/to/your/js/scripts.js"></script>
+    <!-- Link to your JavaScript file -->
+</body>
+</html>
