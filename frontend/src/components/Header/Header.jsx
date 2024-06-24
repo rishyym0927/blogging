@@ -29,20 +29,13 @@ const Header = () => {
     }
   };
 
- 
-
   return (
     <div>
       <div className="drawer">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full navbar pr-5 bg-black text-white h-20"
-          >
+          <motion.div className="w-full navbar pr-5 bg-black text-white h-20">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -65,7 +58,7 @@ const Header = () => {
               </label>
             </div>
             <div className="flex-1 px-6 mx-2 text-3xl font-bold">
-              PageSquare
+              <a href="/">PageSquare</a>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">

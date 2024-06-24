@@ -48,10 +48,10 @@ const EditorialPage = () => {
         </div>
       </div>
 
-      <div className="flex-1 p-8 bg-black text-white ">
+      <div className="flex-1 p-8 bg-black text-white  ">
         {loading ? (
           <div className="flex justify-center items-center h-full">
-            <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+            <div className="loader ease-linear rounded-full  h-12 w-12"></div>
           </div>
         ) : (
           <motion.div
@@ -60,22 +60,21 @@ const EditorialPage = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className="border border-pink-500 p-3 h-full addScroll overflow-y-auto custom-scroll"
+            className=" p-3 h-full addScroll overflow-y-auto custom-scroll overflow-x-hidden"
           >
             <div className="main-content flex flex-col items-center gap-4">
               {tabs.find((tab) => tab.id === selectedTab).content.map((blog, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ scale: 1.05 }}
-                  className="w-[90%] bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700"
-                  onClick={() => window.location.href = `/blogs/${blog.id}`}
+                  whileHover={{ scale: 0.99 }}
+                  className="w-[100%] bg-[#212121] p-4 rounded-lg shadow-lg cursor-pointer  flex flex-row max-h-[200px] overflow-hidden"
+                  onClick={() => window.location.href = `/blogs/${blog._id}`}
                 >
-                  <img src={blog.coverImageURL} alt="Cover" className="rounded-t-lg h-48 w-full object-cover"/>
+                  <img src={blog.coverImageURL} width={70} height={70}  alt="Cover" className=" border rounded-lg h-28 w-1/4 "/>
                   <div className="p-4">
                     <h2 className="text-xl font-bold mb-2">{blog.title}</h2>
-                    <p className="text-gray-300">{blog.body}</p>
                     <div className="flex items-center mt-4">
-                      <img src={blog.createdBy.profileImage} alt="Author" className="h-10 w-10 rounded-full mr-2"/>
+                      <img src={blog.createdBy.profileImage} alt="A" className="h-10 w-10 border rounded-full mr-2"/>
                       <div>
                         <p className="text-gray-300">{blog.createdBy.fullname}</p>
                       </div>
