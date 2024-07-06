@@ -36,7 +36,7 @@ const Header = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <motion.div className="w-full navbar pr-5 bg-black text-white h-20">
+          <div className="w-full navbar pr-5 bg-black text-white h-20 opacity-100">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -64,9 +64,9 @@ const Header = () => {
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {user && user._id ? (
-                  <motion.li
+                  <div
                    
-                    className="text-white flex items-center space-x-4 flex-row"
+                    className="text-white flex items-center space-x-4 flex-row opacity-100"
                   >
                     <div className="flex items-center justify-center">
                       <div className="w-10 h-10 border-white border rounded-full overflow-hidden">
@@ -83,7 +83,7 @@ const Header = () => {
                     >
                       Logout
                     </button>
-                  </motion.li>
+                  </div>
                 ) : (
                   <motion.li
                     initial={{ opacity: 0, x: 20 }}
@@ -97,7 +97,7 @@ const Header = () => {
                 )}
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
         <div className="drawer-side">
           <label
