@@ -1,9 +1,30 @@
-import React from 'react'
+// Loader.js
+import React from "react";
+import { useLoader } from "../../contexts/loadContext";
+import "./Loader.css"; // Ensure this path matches your structure
+import Header from "../Header/Header";
 
 const Loader = () => {
-  return (
-    <div>Loader</div>
-  )
-}
+  const { loading } = useLoader();
 
-export default Loader
+  return (
+    loading && (
+      <>
+        <div className="loaders">
+          <div className="w-full">
+            <Header />
+          </div>
+          <div className="h-full flex items-center justify-center">
+            <div className="spinner">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  );
+};
+
+export default Loader;

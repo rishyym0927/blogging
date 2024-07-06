@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { user, setUser, fetchUserDetails } = useContext(UserContext);
@@ -31,7 +32,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="drawer">
+      <div className="drawer ">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
@@ -58,15 +59,13 @@ const Header = () => {
               </label>
             </div>
             <div className="flex-1 px-6 mx-2 text-3xl font-bold">
-              <a href="/">PageSquare</a>
+              <Link to="/">PageSquare</Link>
             </div>
             <div className="flex-none hidden lg:block">
               <ul className="menu menu-horizontal">
                 {user && user._id ? (
                   <motion.li
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
+                   
                     className="text-white flex items-center space-x-4 flex-row"
                   >
                     <div className="flex items-center justify-center">
@@ -92,7 +91,7 @@ const Header = () => {
                     transition={{ duration: 0.5 }}
                   >
                     <button className="btn btn-xs sm:btn-sm md:btn-sm lg:btn-sm bg-white text-black hover:text-black hover:bg-white/90 hover:scale-105">
-                      <a href="/signin">Touch Me</a>
+                      <Link to="/signin">Touch Me</Link>
                     </button>
                   </motion.li>
                 )}
@@ -109,16 +108,16 @@ const Header = () => {
           <ul className="menu p-4 gap-4 text-xl w-80 min-h-full bg-gray-900 text-white flex justify-center items-center">
             {/* Sidebar content here */}
             <li>
-              <a>Sidebar Item 1</a>
+              <Link>Sidebar Item 1</Link>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <Link>Sidebar Item 2</Link>
             </li>
             <li>
-              <a>Sidebar Item 3</a>
+              <Link>Sidebar Item 3</Link>
             </li>
             <li>
-              <a>Sidebar Item 4</a>
+              <Link>Sidebar Item 4</Link>
             </li>
           </ul>
         </div>

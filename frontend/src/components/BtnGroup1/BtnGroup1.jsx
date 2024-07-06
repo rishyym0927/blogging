@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./customcss1.css";
+import { Link } from "react-router-dom";
 
 const BtnGroup1 = () => {
   return (
@@ -9,20 +10,20 @@ const BtnGroup1 = () => {
         className="btn w-60 h-16 text-2xl bg-black border-pink-500 text-white   hover:text-white hover:bg-black/90 hover:border-pink-500"
         whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.5)" }}
       >
-     <a href="academics"> 😫 Academics</a>
+        <Link to="/academics"> 😫 Academics</Link>
       </motion.button>
 
       <motion.button
         className="btn w-60 h-16 text-2xl bg-black border-pink-500 text-white hover:text-white hover:bg-black/90 hover:border-pink-500  "
         whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.5)" }}
       >
-      <a href="/editorials"> 😈 Editoirals</a>
+        <Link to="/editorials"> 😈 Editoirals</Link>
       </motion.button>
       <motion.button
         className="btn w-60 h-16 text-2xl  bg-black border-pink-500 text-white hover:text-white hover:bg-black/90 hover:border-pink-500"
         whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgba(0, 0, 0, 0.5)" }}
-      ><a href="/epicshit">💩 EpicShit</a>
-       
+      >
+        <Link to="/epicshit">💩 EpicShit</Link>
       </motion.button>
     </div>
   );
