@@ -1,34 +1,51 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 
 export const BlogContext = createContext(null);
 
 export const BlogProvider = ({ children }) => {
   const [blogs, setBlogs] = useState([]);
-  const [error, setError] = useState(null); // Initialize error state
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = useCallback(async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("http://localhost:8001/blog/", {
-        credentials: "include", // Include cookies with the request
+        credentials: "include",
       });
-
-      const contentType = response.headers.get("content-type");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
-      console.log("datasss", data)
-     await setBlogs(data);
+      setBlogs(data);
+      setError(null);
     } catch (error) {
       setError(error.message);
-      console.log(error);
+      console.error("Error fetching blogs:", error);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchBlogs();
-    console.log(`Blogs fetched successfully`, blogs);
-  }, []);
+  }, [fetchBlogs]);
+
+  useEffect(() => {
+    if (!isLoading) {
+      console.log("Blogs updated:", blogs);
+    }
+  }, [blogs, isLoading]);
+
+  const value = {
+    blogs,
+    error,
+    isLoading,
+    refetchBlogs: fetchBlogs
+  };
 
   return (
-    <BlogContext.Provider value={{ blogs, error }}>
+    <BlogContext.Provider value={value}>
       {children}
     </BlogContext.Provider>
   );
