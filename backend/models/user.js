@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String,
-    default: "/images/images.png"
+    default: "https://images.pexels.com/photos/8294606/pexels-photo-8294606.jpeg?auto=compress&cs=tinysrgb&w=600"
   },
   role: {
     type: String,

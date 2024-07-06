@@ -10,7 +10,7 @@ const blogSchema = new mongoose.Schema({
     },
     coverImageURL:{
         type:String,
-        default: "/images/images.png",
+        default: "/images/image1.png",
         required:false
     },
     createdBy:{
