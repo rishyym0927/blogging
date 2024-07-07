@@ -54,8 +54,8 @@ const EditorialPage = () => {
   }
 
   return (
-    <div className="flex h-screen bg-black">
-      <div className="flex flex-col w-1/4 bg-[#000000] p-6">
+    <div className=" flex flex-col sm:flex-row h-screen bg-black pb-8">
+      <div className="flex flex-col w-full sm:w-1/4 bg-[#000000] p-10 sm:p-6">
         <div className="flex flex-col gap-4">
           {tabs.map((tab) => (
             <motion.button

@@ -1,6 +1,12 @@
 // App.js
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
@@ -14,7 +20,7 @@ import { BlogProvider } from "./contexts/BlogContext";
 import { LoaderProvider, useLoader } from "./contexts/loadContext";
 import Loader from "./components/Loader/Loader";
 
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import BlogComponent from "./components/BlogComponent/BlogComponent";
 
 const RouteChangeHandler = () => {
@@ -33,38 +39,62 @@ const RouteChangeHandler = () => {
 };
 
 const ProtectedRoute = ({ children }) => {
-  const token = Cookies.get('token');
+  const token = Cookies.get("token");
   return token ? children : <Navigate to="/signin" />;
 };
 
 function App() {
   return (
+    <BlogProvider>
+      <UserProvider>
+        <LoaderProvider>
+          <BrowserRouter>
+            <Header />
+            <Loader />
+            <RouteChangeHandler />
+            <Routes>
+              <Route path="/signin" element={<Signin />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/" element={<Home />} />
 
-      <BlogProvider>
-        <UserProvider>
-          <LoaderProvider>
-            <BrowserRouter>
-              <Header />
-              <Loader />
-              <RouteChangeHandler />
-              <Routes>
-              
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/" element={<Home />} />
-                
-                  <Route path="/editorials"  element ={<ProtectedRoute><Editorials /></ProtectedRoute>} />
-                  <Route path="/editorials/:id"  element ={<ProtectedRoute><BlogComponent /></ProtectedRoute>} />
-                  <Route path="/academics" element={<ProtectedRoute><Academics /></ProtectedRoute>} />
-                  <Route path="/epicshit" element={<ProtectedRoute><Epicshit /></ProtectedRoute>} />
-
-              </Routes>
-              <Footer />
-            </BrowserRouter>
-          </LoaderProvider>
-        </UserProvider>
-      </BlogProvider>
-  
+              <Route
+                path="/editorials"
+                element={
+                  <ProtectedRoute>
+                    <Editorials />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/editorials/:id"
+                element={
+                  <ProtectedRoute>
+                    <BlogComponent />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/academics"
+                element={
+                  <ProtectedRoute>
+                    <Academics />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/epicshit"
+                element={
+                  <ProtectedRoute>
+                    <Epicshit />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </LoaderProvider>
+      </UserProvider>
+    </BlogProvider>
   );
 }
 
