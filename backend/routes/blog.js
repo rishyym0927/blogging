@@ -5,6 +5,7 @@ const path = require("path");
 //blog routes
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
+const { handleGetBlogById } = require("../controllers/blog");
 
 blogRouter.get("/add-new", (req, res) => {
   return res.render("addBlog.ejs", {
@@ -21,22 +22,7 @@ blogRouter.post("/comment/:blodid", async (req, res) => {
   return res.redirect(`/blog/${req.params.blodid}`);
 });
 
-blogRouter.get("/:id", async (req, res) => {
-  const blog = await Blog.findById(req.params.id).populate("createdBy");
-  const comment = await Comment.find({ blogID: req.params.id }).populate(
-    "createdBy"
-  );
-  if (!blog) return res.status(404).send("Blog not found");
-
-  console.log(blog);
-  console.log(req.user);
-  console.log(comment);
-  return res.render("blog.ejs", {
-    blog,
-    user: res.user,
-    comment,
-  });
-});
+blogRouter.get("/:id", handleGetBlogById);
 
 //posting our blogs
 blogRouter.post("/", async (req, res) => {

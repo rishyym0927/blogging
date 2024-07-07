@@ -15,6 +15,7 @@ import { LoaderProvider, useLoader } from "./contexts/loadContext";
 import Loader from "./components/Loader/Loader";
 
 import Cookies from "js-cookie"
+import BlogComponent from "./components/BlogComponent/BlogComponent";
 
 const RouteChangeHandler = () => {
   const { setLoading } = useLoader();
@@ -53,10 +54,10 @@ function App() {
                 <Route path="/" element={<Home />} />
                 
                   <Route path="/editorials"  element ={<ProtectedRoute><Editorials /></ProtectedRoute>} />
-               
+                  <Route path="/editorials/:id"  element ={<ProtectedRoute><BlogComponent /></ProtectedRoute>} />
                   <Route path="/academics" element={<ProtectedRoute><Academics /></ProtectedRoute>} />
                   <Route path="/epicshit" element={<ProtectedRoute><Epicshit /></ProtectedRoute>} />
-           
+
               </Routes>
               <Footer />
             </BrowserRouter>

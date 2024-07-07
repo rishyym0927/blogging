@@ -5,11 +5,17 @@ import { BlogContext } from "../contexts/BlogContext";
 import FormComponent from "../components/FormComponent/FormComponent";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useNavigate } from "react-router-dom";
 
 const EditorialPage = () => {
   const { blogs, isLoading: isBlogsLoading, error, refetchBlogs } = useContext(BlogContext);
   const [selectedTab, setSelectedTab] = useState("tab1");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBlogClick = (blogId) => {
+    navigate(`/editorials/${blogId}`);
+  };
 
   useEffect(() => {
     refetchBlogs();
@@ -91,7 +97,7 @@ const EditorialPage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className="w-full bg-[#121212] p-6 rounded-xl shadow-lg flex items-center space-x-6 cursor-pointer hover:bg-[#1a1a1a] transition-all duration-300 ease-in-out"
-                    onClick={() => window.location.href = `/blogs/${blog._id}`}
+                    onClick={() => handleBlogClick(blog._id)}
                   >
                     <img src={blog.coverImageURL} alt="Cover" className="w-32 h-32 object-cover rounded-lg shadow-md" />
                     <div className="flex-1">

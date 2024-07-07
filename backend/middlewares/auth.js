@@ -6,7 +6,7 @@ function checkForAuthenticationCookie(cookieName) {
         
         if (!tokenCookieValue) {
             // Redirect to signup page if no token cookie is present
-            return res.redirect('/user/signin');
+            return res.status(401).json({ status: '401 Unauthorized' });
         }
 
         try {
