@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "daisyui/dist/full.css";
 import { BlogContext } from "../contexts/BlogContext";
@@ -7,9 +7,13 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 const EditorialPage = () => {
-  const { blogs, isLoading: isBlogsLoading } = useContext(BlogContext);
+  const { blogs, isLoading: isBlogsLoading, error, refetchBlogs } = useContext(BlogContext);
   const [selectedTab, setSelectedTab] = useState("tab1");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    refetchBlogs();
+  }, [refetchBlogs]);
 
   const tabs = useMemo(() => [
     { id: "tab1", title: "All Posts", content: blogs },
@@ -39,10 +43,13 @@ const EditorialPage = () => {
     </div>
   );
 
+  if (error) {
+    return <div className="text-red-500">Error loading blogs: {error}</div>;
+  }
+
   return (
     <div className="flex h-screen bg-black">
       <div className="flex flex-col w-1/4 bg-[#000000] p-6">
-       
         <div className="flex flex-col gap-4">
           {tabs.map((tab) => (
             <motion.button
@@ -74,7 +81,7 @@ const EditorialPage = () => {
             <div className="main-content space-y-6">
               {selectedTab === "tab5" ? (
                 <FormComponent />
-              ) : loading || isBlogsLoading ? (
+              ) : isBlogsLoading || loading ? (
                 Array(5).fill().map((_, index) => <BlogSkeleton key={index} />)
               ) : (
                 tabs.find((tab) => tab.id === selectedTab).content.map((blog, index) => (

@@ -10,6 +10,7 @@ export const BlogProvider = ({ children }) => {
   const fetchBlogs = useCallback(async () => {
     setIsLoading(true);
     try {
+      console.log("BlogContext: Fetching blogs");
       const response = await fetch("http://localhost:8001/blog/", {
         credentials: "include",
       });
@@ -19,6 +20,7 @@ export const BlogProvider = ({ children }) => {
       const data = await response.json();
       setBlogs(data);
       setError(null);
+      console.log("BlogContext: Blogs fetched successfully", data);
     } catch (error) {
       setError(error.message);
       console.error("Error fetching blogs:", error);
@@ -30,12 +32,6 @@ export const BlogProvider = ({ children }) => {
   useEffect(() => {
     fetchBlogs();
   }, [fetchBlogs]);
-
-  useEffect(() => {
-    if (!isLoading) {
-      console.log("Blogs updated:", blogs);
-    }
-  }, [blogs, isLoading]);
 
   const value = {
     blogs,
