@@ -22,8 +22,8 @@ async function handleSignUp(req, res) {
       password,
     });
     console.log(user);
-    return res.redirect("/signin");
-  } catch (err) {
+    return res.status(201).json({ message: "User created"});
+    } catch (err) {
     console.log("error");
     console.log(err);
     return res.status(500).json({ error: err.message });

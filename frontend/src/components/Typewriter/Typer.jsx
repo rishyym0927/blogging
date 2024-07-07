@@ -8,7 +8,7 @@ const Typer = () => {
         <span className='text-3xl md:text-5xl text-pink-500'>
          
           <Typewriter
-            words={['From IIIT LUCKNOW🤑', 'Not IIT Lucknow for sure 😭','From IT Branch 2nd Year😇', 'I love JS and Go']}
+            words={['From IIIT LUCKNOW🤑', 'Not IIT Lucknow for sure 😭','From IT Branch 2nd Year😇', 'I Do Cp and Web Dev ']}
             loop={0}
             cursor
             cursorStyle='...'
