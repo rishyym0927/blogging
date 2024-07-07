@@ -50,7 +50,7 @@ blogRouter.post("/", async (req, res) => {
 
   console.log(req.body);
   console.log(req.file);
-  return res.redirect(`/blog/${blog._id}`);
+  return res.status(201).json(blog);
 });
 
 

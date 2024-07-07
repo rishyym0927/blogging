@@ -68,7 +68,7 @@ const EditorialPage = () => {
           ))}
         </div>
       </div>
-      <div className="flex-1 p-8 bg-black text-white overflow-hidden">
+      <div className="flex-1 px-8 pt-2 bg-black text-white overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedTab}
@@ -76,7 +76,7 @@ const EditorialPage = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="h-full overflow-y-auto pr-4 custom-scrollbar"
+            className="h-full overflow-y-auto pr-4 custom-scrollbar pt-2"
           >
             <div className="main-content space-y-6">
               {selectedTab === "tab5" ? (
